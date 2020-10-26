@@ -1,5 +1,5 @@
 ---
-title: "Maximum Likelihood Estimation"
+title: "Bureaucracy & Citizenship"
 author: "Samuel Workman, Ph.D."
 date: '`r Sys.Date()`'
 output: 
@@ -26,49 +26,40 @@ library(kableExtra)
       
 <div class = "col-md-6">
 <br>Office Hours: Remote & By Appointment
-<br>Class Sessions: Asynchronous
+<br>Class Sessions: M & W, 3:30 - 4:45 p.m.
 <br>Office: Remote
-<br>Classroom: Remote
+<br>Classroom: Dale Hall Tower 0906
 </div>
 </div>
 ------------------------------------------------------------------------
 
 ## Course Description
 
-The vast majority of data of interest to social scientists do not fit into the Gaussian assumptions of the classic normal regression model taught in introductory statistics courses. Data often diverge drastically from the continuous, normally distributed outcomes associated with the classic model. Common data of interest display binary, ordinal, or nominal outcomes. In addition, data are often correlated across space, time, or are nested, making applications of the classic model difficult. More importantly, the application of the classic model to data of this type often leads to confusing, strained, or nonsensical interpretations of analyses. That is, the classic model applied to this data makes *substantive* interpretation of findings difficult---a major problem when communicating research findings in the academy or to policy makers charged with decision-making. This course will introduce the students to maximum likelihood methods that can be more broadly applied to social science data. Throughout, we will emphasize the communication of these models for substantive import of the findings and decision-making.
+This seminar assesses the role of the federal bureaucracy in American politics and policy implementation. The course addresses three major features of bureaucracy. The first of these are bureaucrats themselves. We will discuss street-level bureaucracy, the influences on bureaucratic behavior, and how bureaucrats cope with the crush of politics and public service. The second section focuses on bureaucratic politics and public policy. In particular we will address how bureaucracies make policy and implement public programs. The third section focuses on bureaucracies as organizations, paying particular attention to how information shapes public policy and decision-making in organizations of all types. Each week’s discussion will combine scholarship on theory development, conceptualization, and empirical tests, sometimes within distinct policy areas. The course operates in discussion format. Students will be expected to take the readings seriously and to engage the professor and their peers in discussing the readings for understanding and for their implications.
 
-There are no specific prerequisites for this course, although familiarity with the classic regression model, such as taught in P SC 5913 & 5933, is helpful. Students should also be ready to make themselves comfortable with matrix algebra, probability, and working with exponents and logs in deriving likelihood functions. All needed math and coding will be demonstrated and covered in class. Students will implement the techniques from the course using freely available statistical programs. Students should also be ready to work with their own data.
+Prerequisites for the course include an understanding of introductory level American politics. Undergraduate level P SC 1113 Minimum Grade of D.
 
 # Jump to Section {.tabset .tabset-fade .tabset-pills}
 
 ## Texts
 
-* King, Gary. 1998. *Unifying Political Methodology*. Ann Arbor, MI: University of Michigan Press.
-* Ward, Michael D. and John S. Ahlquist. 2018. *Maximum Likelihood for Social Science: Strategies for Analysis*. Cambridge: Cambridge University Press.
+* Arrow, Kenneth J. 1974. *The Limits of Organization*. New York: W.W. Norton & Company.
+* Herd, Pamela and Donald P. Moynihan. 2018. *Administrative Burden: Policymaking by Other Means*. New York: Russell Sage Foundation.
+* Lipsky, Michael. 2010. *Street-Level Bureaucracy: Dilemmas of the Individual in Public Service*. New York: Russell Sage Foundation.
 
 ## Course Requirements
 
-The course requirements are geared towards developing students' skills in the entire range of research, analysis, and storytelling with data. The assignments promote the development of the conduct and presentation of research results, including intuitive data visualization. In addition to these, the assignments develop students' ability to synthesize and integrate theories, ideas, and existing research pertaining to these. The course is asynchronous and designed such that students can work their way through the material at their own pace while still being about to interact with their peers. Each section of the course will consist of a module addressing MLE for particular data-generating processes. Within each module, one or more vignettes will address the practical implementation of these approaches to data using `r icon::fa("r-project")`.
+There are an even 100 points possible in the course. This means that determining and keeping track of your grade is very easy. Please be aware of where you stand in the course with your grade. The points available will be allocated across a range of activities that are designed to foster the skills development outlined above.
 
-*Participation*. We will meet as a group on Zoom 2--4 times this semester. In addition, students will be availed of individual meetings with the professor. During meetings of the class and one-on-one with the professor, students are expected to have read the material, watched any related videos posted by the professor, and attempted to work through vignettes on their own.
+**Written Assignments**: 80 points. There will be four, short written assignments that pertain to the texts and to our class discussion of them. These short papers (~2 pages single-spaced) will address synthesis, extension, and application of the texts and our classroom discussion.
 
-*Vignettes*. Each student will develop 2 vignettes of their own that address methods covered in the modules. This means that the student will have to identify a suitable data source for vignettes. The student will then construct their own vignette, complete with code that teaches the reader how to apply the method or model. Data for the vignettes need not pertain to the social sciences or the student's research.
-
-*Research Project*. Over the course of the semester, students will write a research paper. These papers will contain a question of interest, description of the data to be used to answer the question, justification of the method used to analyze the data, and findings employing presentation techniques learned in the class. These papers need not contain fully developed theory and literature review sections (though they could if the student chooses).
-
-The table below displays the grading policy. Since the course is asynchronous, students work at their own pace and due dates reflect the final day to turn in an assignment. Please note that this means students may work ahead and finish the course early as well. ***Students may work together in teams of up to 3 for ALL assignments. Be aware that team membership is permanent if the student chooses and all members of the team will be given the same grade for each assignment. If choosing to work in teams, meetings and participation on Zoom will include everyone in the project team.***
+**Participation & Discussion**: 20 points. Students will engage the professor and their peers in discussion and analysis of the texts. This includes summation of the readings, commenting on their meaning and application, demonstrating critical thinking skills in evaluating the arguments in the texts, and raising questions that further our discussion and understanding of the texts.
 
 ```{r, echo=FALSE}
 due_dates <- readxl::read_excel('due_dates.xlsx')
 kable(due_dates) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
 ```
-
-There are an even 100 points possible in the course. This means that determining and keeping track of your grade is very easy. Please be aware of where you stand in the course with your grade. The points available will be allocated across a range of activities that are designed to foster the skills development outlined above.
-
-**Written Assignments**: 90 points. There will be three, short vignettes that pertain to the texts, our discussion, example `r icon::fa("r-project")` code, and your research project. These vignettes should be 2-5 pages single spaced, but are not walls of text, tables, figures, equations, should be sprinkled throughout.
-
-**Participation \& Discussion**: 10 points. Students will engage the professor and their peers in discussion and analysis of the texts, working through `r icon::fa("r-project")` code, and development of statistical and presentational procedures.
 
 ## Course Policies
 
@@ -106,52 +97,59 @@ For any concerns regarding gender-based discrimination, sexual harassment, sexua
 
 ## Course Schedule
 
-Students will work through each of the modules below. Once constructed, slides, video, and vignettes applying the methods will be linked below each module in the syllabus. These will also be warehoused on Canvas. Students may work through each module at their own pace and are encouraged to work together.
+Readings are expected to be completed prior to the week scheduled class discussion of them below.
 
-### Modules {.tabset .tabset-fade .tabset-pills}
+### Week 1, August 24 & 26: Introduction to the course, roadmap, and contingency plans.
+*Reading:* NONE.
 
-#### Module 1. Introduction & Logic of Maximum Likelihood
+### Week 2, August 31 & September 2: Who are bureaucrats, why are they important, and bureaucrats as policymakers.
+*Reading:* Lipsky, Chapters 1 & 2.
 
----
+### Week 3, September 7 & 9: Debates about resources, goals, and performance.
+*Reading:* Lipsky, Chapters 3 & 4.
 
-Reading: King, Chapter 1 & 2; Ward & Ahlquist Chapter 1 & 2.
+### Week 4, September 14 & 16:  Relationships and advocacy.
+*Reading:* Lipsky, Chapters 5 & 6.
 
-Workman, [Four Principles of Data Collection](https://towardsdatascience.com/four-principles-of-data-collection-82ad07938ac1)
+<span style="color:#dc322f">Reflection paper 1 due September 18 at Noon.</span>
 
-##### Slides
+### Week 5, September 21 & 23:  Rationing, access, and inequality.
+*Reading:* Lipsky, Chapters 7 & 8.
 
-[Introduction](../../../slides/intro_slides.html#1)
+### Week 6, September 28 & 30:  Clients, tasks, and controlling the process.
+*Reading:* Lipsky, Chapters 9 & 10.
 
-[Introduction `r icon::fa("youtube")`](https://youtu.be/5Y1t3fb-Rm0)
+### Week 7, October 5 & 7:  Retrenchment and broader context.
+*Reading:* Lipsky, Chapters 11 & 12.
 
-[Basic Probability & Mathematics for Likelihood](../../../slides/likelihood_math.html#1)
+<span style="color:#dc322f">Reflection paper 2 due October 9 at Noon.</span>
 
-[Basic Probability & Mathematics for Likelihood `r icon::fa("youtube")`](https://youtu.be/wwe_U7z3sKY)
+### Week 8, October 12 & 14:  Administrative burden and inequality.
+*Reading:* Herd & Moynihan, Chapters 1 & 2.
 
-[Classic Approach to Analysis](../../../slides/classical_approach.html)
+### Week 9, October 19 & 21:  Targeted burden and the influence of federalism.
+*Reading:* Herd & Moynihan, Chapters 3 & 4.
 
-[Classic Approach to Analysis `r icon::fa("youtube")`](https://youtu.be/NXafc2vNU6I)
+### Week 10, October 26 & 28:  Medicare, SNAP, and partisanship.
+*Reading:* Herd & Moynihan, Chapters 5 & 6.
 
-<!---
-```{r embed-xaringan, echo=FALSE}
-xaringanExtra::embed_xaringan(url = "../../../slides/likelihood_math.html", ratio = "1:.75")
-```
--->
+### Week 11, November 2 & 4:  Reducing burdens and state-level dynamics.
+*Reading:* Herd & Moynihan, Chapters 7 & 8.
 
+### Week 12, November 9 & 11:  Banishing burdens and evidence-based approaches.
+*Reading:* Herd & Moynihan, Chapters 9 & 10.
 
-##### Gary King's Take
+<span style="color:#dc322f">Reflection paper 3 due November 13 at Noon.</span>
 
-<iframe width="162" height="100" src="https://www.youtube.com/embed/qs2uCuDL2OQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<iframe width="162" height="100" src="https://www.youtube.com/embed/qbxNf4iqJPo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<iframe width="162" height="100" src="https://www.youtube.com/embed/kaL1KzDTotc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<iframe width="162" height="100" src="https://www.youtube.com/embed/6C7yRBfh2ok" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+### Week 13, November 16 & 18:  Individual and societal rationality.
+*Readings:* Arrow, Chapter 1.
 
-#### Module 2. Describing and Developing Statistical Models
+### Week 14, November 23 & 25: <span style="color:#268bd2">Thanksgiving Holiday. NO CLASS.</span>
+*Reading:* NONE.
 
----
+### Week 15, November 30 & December 2: Information and Organizational Agendas.
+*Reading:* Arrow, Chapters 2 & 3.
 
-Reading: None.
+### Week 16, December 7 & 9: Individual consultations.
 
-[Describing Statistical Models](../../../slides/statistical_models.html)
-
-[Describing Statistical Models `r icon::fa("youtube")`]()
+<span style="color:#dc322f">Reflection paper 4 due December 11th at Noon.</span>

@@ -1,6 +1,10 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@300&family=Fira+Mono&family=Josefin+Slab:wght@700&display=swap');
 
+.red { color: red; }
+.blue {color: blue; }
+.green {color: green; }
+
 h1 {
   font-family: 'Josefin Slab', serif;
 }
@@ -61,9 +65,12 @@ h1 {
   color: #268bd2;
 }
 
+h3{
+  color: #859900;
+}
+
 /*HEADING FONT COLOR*/
 h2,
-h3,
 h4,
 h5,
 h6 {
