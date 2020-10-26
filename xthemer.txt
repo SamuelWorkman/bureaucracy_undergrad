@@ -1,0 +1,8 @@
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_solarized_light(
+  header_font_google = google_font("Josefin Slab", "600"),
+  text_font_google   = google_font("Alegreya Sans", "300", "300i"),
+  code_font_google   = google_font("Fira Code")
+)
+```

@@ -1,0 +1,370 @@
+\documentclass[a4paper,12pt]{article}
+%\usepackage{draft}
+%\doublespacing
+%\graphicspath{{./Figures/}}
+%\newcommand{\tablepath}{./Tables/}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Set Graphics, Equations, and Table Paths
+\makeatletter
+\newcommand{\includetable}[1]{%
+  \@ifundefined{tablepath}{%
+    \InputIfFileExists{#1}{}{}%
+  }{%
+    \InputIfFileExists{\tablepath/#1}{}{\InputIfFileExists{#1}{}{}}%
+  }
+}
+\makeatother
+%
+\makeatletter
+\newcommand{\includeequation}[1]{%
+  \@ifundefined{equationpath}{%
+    \InputIfFileExists{#1}{}{}%
+  }{%
+    \InputIfFileExists{\equationpath/#1}{}{\InputIfFileExists{#1}{}{}}%
+  }
+}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Sectioning, PDF Bookmarks, Titles, & Hypotheses
+\usepackage{pdfpages}
+\usepackage[title]{appendix}
+\usepackage{ntheorem}
+\newtheorem{hypothesis}{Hypothesis}
+\makeatletter
+\renewcommand\@seccntformat[1]{}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Handling Math & Symbols
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathspec}
+\usepackage{siunitx}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Margins & Spacing
+\usepackage{setspace}
+\usepackage[margin = 1in]{geometry}
+\tolerance = 1000    % was 1500
+\parindent = 10 pt   % was 12 pt for book in Bembo, 20 pt for non-book
+\linespread{1.15}
+\frenchspacing %Single sentence spacing.
+%\nonfrenchspacing %Undoes single spaced sentences.
+% Line and flow issues
+\hfuzz = 2pt
+\vfuzz = 2pt
+\emergencystretch = 5pt
+\newlength{\defbaselineskip}
+\setlength{\defbaselineskip}{\baselineskip}
+\newcommand{\setlinespacing}[1]%
+           {\setlength{\baselineskip}{#1 \defbaselineskip}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Headers & Footers
+\usepackage{fancyhdr}
+\usepackage[hang, flushmargin, bottom]{footmisc}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\rfoot{\thepage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Floats & Figures
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{caption}
+\newcommand\fnote[1]{\captionsetup{font = scriptsize, justification = justified}\caption*{#1}}
+\usepackage{float}
+\usepackage{rotating}
+% Manage floats
+\renewcommand{\topfraction}{0.9}        % 90% of page top can be a float
+\renewcommand{\bottomfraction}{0.9}     % 90% of page bottom can be a float
+\renewcommand{\textfraction}{0.07}       % only 7% of page must to be text
+
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}     % 2 may work better
+%   Parameters for FLOAT pages (not text pages):
+\renewcommand{\floatpagefraction}{0.7}	% require fuller float pages
+% N.B.: floatpagefraction MUST be less than topfraction !!
+\renewcommand{\dblfloatpagefraction}{0.7}	% require fuller float pages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Tables
+\usepackage{booktabs}
+\usepackage[flushleft]{threeparttable}
+\usepackage{dcolumn}
+\newcolumntype{.}{D{.}{.}{-1}}
+\usepackage{longtable}
+\usepackage{multirow}
+\makeatletter
+\g@addto@macro\TPT@defaults{\footnotesize}%Table note script size.
+\makeatother
+% Allow ragged right in tables
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+% Set up siunitx table columns for statistics
+\sisetup{
+        detect-mode,
+        tight-spacing           = true,
+        group-digits            = false,
+        input-signs             = ,
+        input-symbols           = ,
+        input-open-uncertainty  = ,
+        input-close-uncertainty = ,
+        table-align-text-pre    = false,
+        table-space-text-pre    = (,
+        table-space-text-post   = ),
+        }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%References, Notes, & Links
+\usepackage[backend = biber, style = chicago-authordate, texencoding=utf8, sorting = nyt,
+    urldate=comp, dateabbrev=false]{biblatex}
+\usepackage[colorlinks = TRUE, urlcolor = blue, linkcolor = black,
+    citecolor = blue]{hyperref}
+\usepackage{url}
+%Command to Create Full Citations
+\DeclareCiteCommand{\fullcite}
+  {\usebibmacro{prenote}}
+  {\usedriver
+     {}
+     {\thefield{entrytype}}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+%\addbibresource{master.bib}
+%\addbibresource{publications.bib}
+%\usepackage{endnotes}
+%\let\footnote = \endnote
+\addtolength{\skip\footins}{1pt}  %
+\addtolength{\footnotesep}{1pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{fontspec}
+\fontspec [ Path = ./fonts/,
+  UprightFont = AlegreyaSans-Regular.ttf,
+  BoldFont = AlegreyaSans-Bold.ttf,
+  ItalicFont = AlegreyaSans-Italic.ttf,
+  BoldItalicFont = AlegreyaSans-BoldItalic.ttf ] {Alegreya Sans}
+
+\fontspec [ Path = ./fonts/,
+  UprightFont = Alegreya-Regular.ttf,
+  BoldFont = Alegreya-Bold.ttf,
+  ItalicFont = Alegreya-Italic.ttf,
+  BoldItalicFont = Alegreya-BoldItalic.ttf ] {Alegreya}
+
+\fontspec [ Path = ./fonts/,
+  UprightFont = FiraMono-Regular.ttf,
+  BoldFont = FiraMono-Bold.ttf ] {Fira Mono}
+
+\setmainfont[Ligatures=TeX, Numbers=OldStyle, WordSpace=0.95]{Alegreya}
+\setsansfont[Ligatures=TeX, Scale=MatchLowercase]{Alegreya Sans}
+\setmonofont[Scale=MatchLowercase]{Fira Mono}
+
+\setmathsfont[Numbers={Monospaced,Lining}]{Alegreya Sans}
+\setmathsfont(Digits)[Numbers={Monospaced,Lining}]{Alegreya Sans}
+\AtBeginDocument{\setmathsfont(Digits)[Numbers={Monospaced,OldStyle}]{Alegreya}}
+\setmathsfont(Latin)[Scale=MatchLowercase]{Alegreya}
+\setmathsfont(Greek)[Scale=MatchLowercase]{Alegreya}
+
+%\AtBeginDocument{\setmainfont[Ligatures={TeX,Rare,Historic}, Numbers={OldStyle, Proportional}, WordSpace=0.95]{Alegreya}}
+\AtBeginDocument{\setmainfont[Ligatures={TeX}, Numbers={OldStyle, Proportional}, WordSpace=0.95]{Alegreya}}
+
+
+% Use lining numbers in text
+\newcommand{\lnt}[1]%
+           {{\addfontfeatures{Numbers={Monospaced,Lining}}#1}}
+
+% Use lining numbers in math
+\newcommand{\lnm}[1]%
+           {\textrm{\addfontfeatures{Numbers={Monospaced,Lining}}#1}}
+
+
+% Set up oldstyle and lining numbers for tables
+\AtBeginDocument{\newcolumntype{.}{>{\rm \addfontfeatures{Numbers={Monospaced,OldStyle}}}D{.}{.}{-1}}}
+\newcolumntype{:}{>{\addfontfeatures{Numbers={Monospaced,Lining}}}D{.}{.}{-1}}
+
+\makeatletter
+\renewenvironment{table}%
+  {\renewcommand\familydefault\sfdefault
+   \@float{table}}
+  {\end@float}
+\makeatother
+
+\usepackage{setspace}\singlespacing
+\usepackage{indentfirst}
+\parskip=3pt
+\frenchspacing
+\usepackage{authblk}
+\usepackage[sf,bf]{titlesec}
+\renewcommand\Affilfont{\itshape}
+%\pagenumbering{gobble}
+\usepackage[super]{nth}
+\renewenvironment{figure}[1][2] {
+    \expandafter\origfigure\expandafter[H]
+} {
+    \endorigfigure
+}
+%\usepackage{endnotes} # if journal requires endnotes
+%\let\footnote=\endnote
+%\usepackage{lineno} #if journal requires line numbering, uncomment these two lines
+%\linenumbers
+
+\usepackage{xcolor-solarized}
+\usepackage{pagecolor}
+\pagecolor{solarized-base3} % solarized-light
+%\pagecolor{solarized-base0} % solarized-dark
+
+\makeatletter
+\newcommand{\globalcolor}[1]{%
+  \color{#1}\global\let\default@color\current@color
+}
+\makeatother
+
+\AtBeginDocument{\globalcolor{solarized-base00}} % solarized-light
+%\AtBeginDocument{\globalcolor{solarized-base03}} % solarized-dark
+
+%Command to Create Full Citations
+\DeclareCiteCommand{\fullcite}
+  {\usebibmacro{prenote}}
+  {\usedriver
+     {}
+     {\thefield{entrytype}}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+\title{Bureaucracy \& Citizenship \\ \large{\small P SC 3113 - 001, CRN: 43258}}
+\author{Dr. Samuel Workman \\ Department of Political Science \\ The University of Oklahoma}
+\date{Fall 2020}
+
+%--------------------------------------------------------------------------------------------------------------------------
+
+\begin{document}
+\maketitle
+
+\begin{center}\rule{6.5in}{2pt}\end{center}
+
+\noindent Email: \texttt{samuel.workman@ou.edu} \hfill Office: Remote
+
+\noindent Web: \texttt{samuelworkman.org} \hfill Class Sessions: M \& W, 3:30 - 4:45 p.m.
+
+\noindent Office Hours: By Appointment \hfill Classroom: Dale Hall Tower 0906
+
+\begin{center}\rule{4in}{2pt}\end{center}
+
+\section*{Course Description}
+
+This seminar assesses the role of the federal bureaucracy in American politics and policy implementation. The course addresses three major features of bureaucracy. The first of these are bureaucrats themselves. We will discuss street-level bureaucracy, the influences on bureaucratic behavior, and how bureaucrats cope with the crush of politics and public service. The second section focuses on bureaucratic politics and public policy. In particular we will address how bureaucracies make policy and implement public programs. The third section focuses on bureaucracies as organizations, paying particular attention to how information shapes public policy and decision-making in organizations of all types. Each week’s discussion will combine scholarship on theory development, conceptualization, and empirical tests, sometimes within distinct policy areas. The course operates in discussion format. Students will be expected to take the readings seriously and to engage the professor and their peers in discussing the readings for understanding and for their implications.
+
+Prerequisites for the course include an understanding of introductory level American politics. Undergraduate level P SC 1113 Minimum Grade of D.
+
+\section*{Course Requirements}
+
+This class is based on in-class discussion of readings on bureaucracy. Students will complete short reading assignments based on their understanding, synthesis, and application of the readings.
+
+\section*{Texts}
+\begin{itemize}
+\item Arrow, Kenneth J. 1974. \emph{The Limits of Organization}. New York: W.W. Norton \& Company.
+\item Herd, Pamela and Donald P. Moynihan. 2018. \emph{Administrative Burden: Policymaking by Other Means}. New York: Russell Sage Foundation.
+\item Lipsky, Michael. 2010. \emph{Street-Level Bureaucracy: Dilemmas of the Individual in Public Service}. New York: Russell Sage Foundation.
+\end{itemize}
+
+\section*{Course Requirements \& Grading Policy}
+
+There are an even 100 points possible in the course. This means that determining and keeping track of your grade is very easy. Please be aware of where you stand in the course with your grade. The points available will be allocated across a range of activities that are designed to foster the skills development outlined above.
+
+\textbf{Written Assignments}: 80 points. There will be four, short written assignments that pertain to the texts and to our class discussion of them. These short papers (~2 pages single-spaced) will address synthesis, extension, and application of the texts and our classroom discussion.
+
+\textbf{Participation \& Discussion: } 20 points. Students will engage the professor and their peers in discussion and analysis of the texts. This includes summation of the readings, commenting on their meaning and application, demonstrating critical thinking skills in evaluating the arguments in the texts, and raising questions that further our discussion and understanding of the texts.
+
+\section*{Late \& Makeup Policy}
+
+All  assignments  are  due  on  time.  Since  all  assignments  are  specified  well  in  advance, or alternatively are completed contemporaneously, late assignments will not be accepted and will receive a grade of zero. Exceptions for late work will be granted for only the most dire of circumstances.
+
+\section*{Professional Communications}
+
+Most general course administration questions can be answered by referring to the syllabus. I tend to respond to student email only once every 24 hours. Depending on when I check my email on a given day, the earliest time at which a response may be expected is within 24 hours. Please be aware that I also do not respond to emails on weekends or holidays.
+
+\section*{Religious Observances}
+
+The University's policy with regard to religious observances is as follows: "It is the policy of the University to excuse the absences of students that result from religious observances and to provide without penalty for the rescheduling of examinations and additional required class work that may fall on religious holidays."
+
+Students should notify the Professor of a pending absence by the second meeting of the class. Since religious observances are specified well in advance of the academic calendar, students should communicate this well in advance of important dates for the course.
+
+\section*{Academic Dishonesty}
+
+Students who violate University rules on scholastic dishonesty are subject to disciplinary penalties and action, including the possibility of failure in the  course and/or dismissal from the University. Since such dishonesty harms the individual, all students, and the integrity ofthe University, policies on scholastic dishonesty will be strictly enforced and pursued totheir maximum extent.
+
+\section*{Reasonable Accomodations Policy}
+
+\emph{Students must initiate their request for reasonable accommodations through the DisabilityResource Center (DRC).} Students must alert the professor immediately if planning for reasonable accommodations. Upon the granting of reasonable accommodations by DRC, students will be given an opportunity to demonstrate their abilities and proficiency in meeting course requirements and expectations.
+
+\section*{Adjustments for Pregnancy \& Childbirth Related Issues}
+
+Should you need modifications or adjustments to your course requirements because of documented pregnancy-related or childbirth-related issues, please contact me as soon as possible to discuss.  Generally, modifications will be made where medically necessary and similar in scope to accommodations based on temporary disability.  Please see www.ou.edu/content/eoo/faqs/pregnancy-faqs.html for commonly asked questions.
+
+\section*{Title IX Resources}
+For any concerns regarding gender-based discrimination, sexual harassment, sexual misconduct, stalking, or intimate partner violence, the University offers a variety of resources, including advocates on-call 24.7, counseling services, mutual no contact orders, scheduling adjustments and disciplinary sanctions against the perpetrator.  Please contact the Sexual Misconduct Office 405-325-2215 (8-5, M-F) or OU Advocates 405-615-0013 (24.7) to learn more or to report an incident.
+
+\section*{Course Schedule}
+
+Readings are expected to be completed prior to the week scheduled class discussion of them below.
+
+\subsection*{Week 1, August 24 \& 26: Introduction to the course, roadmap, and contingency plans.}
+\emph{Reading:} NONE.
+
+\subsection*{Week 2, August 31 \& September 2: Who are bureaucrats, why are they important, and bureaucrats as policymakers.}
+\emph{Reading:} Lipsky, Chapters 1 \& 2.
+
+\subsection*{Week 3, September 7 \& 9: Debates about resources, goals, and performance.}
+\emph{Reading:} Lipsky, Chapters 3 \& 4.
+
+\subsection*{Week 4, September 14 \& 16:  Relationships and advocacy.}
+\emph{Reading:} Lipsky, Chapters 5 \& 6.
+
+\textcolor{red}{\textbf{Reflection paper 1 due September 18 at Noon.}}
+
+\subsection*{Week 5, September 21 \& 23:  Rationing, access, and inequality.}
+\emph{Reading:} Lipsky, Chapters 7 \& 8.
+
+\subsection*{Week 6, September 28 \& 30:  Clients, tasks, and controlling the process.}
+\emph{Reading:} Lipsky, Chapters 9 \& 10.
+
+\subsection*{Week 7, October 5 \& 7:  Retrenchment and broader context.}
+\emph{Reading:} Lipsky, Chapters 11 \& 12.
+
+\textcolor{red}{\textbf{Reflection paper 2 due October 9 at Noon.}}
+
+\subsection*{Week 8, October 12 \& 14:  Administrative burden and inequality.}
+\emph{Reading:} Herd \& Moynihan, Chapters 1 \& 2.
+
+\subsection*{Week 9, October 19 \& 21:  Targeted burden and the influence of federalism.}
+\emph{Reading:} Herd \& Moynihan, Chapters 3 \& 4.
+
+\subsection*{Week 10, October 26 \& 28:  Medicare, SNAP, and partisanship.}
+\emph{Reading:} Herd \& Moynihan, Chapters 5 \& 6.
+
+\subsection*{Week 11, November 2 \& 4:  Reducing burdens and state-level dynamics.}
+\emph{Reading:} Herd \& Moynihan, Chapters 7 \& 8.
+
+\subsection*{Week 12, November 9 \& 11:  Banishing burdens and evidence-based approaches.}
+\emph{Reading:} Herd \& Moynihan, Chapters 9 \& 10.
+
+\textcolor{red}{\textbf{Reflection paper 3 due November 13 at Noon.}}
+
+\subsection*{Week 13, November 16 \& 18:  Individual and societal rationality.}
+\emph{Readings:} Arrow, Chapter 1.
+
+\subsection*{Week 14, November 23 \& 25: Thanksgiving Holiday. NO CLASS.}
+\emph{Reading:} NONE.
+
+\subsection{Week 15, November 30 \& December 2: Information and Organizational Agendas.}
+\emph{Reading:} Arrow, Chapters 2 \& 3.
+
+\subsection{Week 16, December 7 \& 9: Individual consultations.}
+\textcolor{red}{\textbf{Reflection paper 4 due December 11th at Noon.}}
+
+\end{document} 
